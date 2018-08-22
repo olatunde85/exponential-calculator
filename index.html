@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>calculate probability of exponential distribution</title>
+</head>
+<body>
+
+	<h3>calc prob of exponential and expected value</h3>
+<form>
+	lamda: 
+	<input type="text" id="lambda" onkeyup="calc()" name="lambda"><br><br>
+	k: 
+	<input type="text" id="k" onkeyup="calc()" name="k"><br>
+	n: 
+	<input type="text" id="n" onkeyup="calc()" name="n"><br>
+	prob x = k is : <span id="ans"></span>; expected value <span id="ev"></span><br>
+	prob x <= k is : <span id="ans2"></span>; expected value <span id="ev2"></span><br>
+	prob x >= k is : <span id="ans3"></span>; expected value <span id="ev3"></span><br>
+</form>
+
+<script type="text/javascript">
+	function fac(n) {
+		return(n<2)?1:fac(n-1)*n;
+	}
+	function calc() {
+		var k = document.getElementById('k').value;
+		var lambda = document.getElementById('lambda').value;
+		var n = document.getElementById('n').value;
+		var exp = Math.exp(-lambda);
+		var expk = Math.exp(-k/lambda);
+		var power = Math.pow(lambda, k);
+		var fact = fac(k);
+		var ans = (exp * power)/fact;
+		document.getElementById('ans').innerHTML = ans;
+		document.getElementById('ans2').innerHTML = 1-expk;
+		document.getElementById('ans3').innerHTML = expk;
+		document.getElementById('ev').innerHTML = ans*n;
+		document.getElementById('ev2').innerHTML = (1-expk)*n;
+		document.getElementById('ev3').innerHTML = expk*n;	
+
+
+	}
+</script>
+</body>
+</html>
